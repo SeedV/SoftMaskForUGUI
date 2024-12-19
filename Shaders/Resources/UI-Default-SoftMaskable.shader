@@ -40,7 +40,7 @@ Shader "Hidden/UI/Default (SoftMaskable)"
         Lighting Off
         ZWrite Off
         ZTest [unity_GUIZTestMode]
-        Blend SrcAlpha OneMinusSrcAlpha
+        Blend One OneMinusSrcAlpha
         ColorMask [_ColorMask]
 
         Pass
@@ -108,6 +108,7 @@ Shader "Hidden/UI/Default (SoftMaskable)"
                 #endif
 
                 color.a *= SoftMask(IN.vertex, IN.worldPosition);	// Add for soft mask
+                color.rgb *= color.a;
 
                 return color;
             }
